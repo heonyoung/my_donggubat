@@ -16,13 +16,11 @@ class _LogInstate extends State<LogIn> {
   TextEditingController controller1 = TextEditingController();
   TextEditingController controller2 = TextEditingController();
 
-  //hys 1125 추가, 이메일 로그인 구현 
+  //hys 1125 추가, 이메일 로그인 구현
   Future<bool> _LoginWithEmail(String email, String password) async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password
-      );
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
       print("sign in with : ");
       print(FirebaseAuth.instance.currentUser?.uid);
       return true;
@@ -35,7 +33,6 @@ class _LogInstate extends State<LogIn> {
       return false;
     }
   }
-
 
   Future<void> _showConfirmationDialog(BuildContext context) async {
     return showDialog<void>(
@@ -83,9 +80,9 @@ class _LogInstate extends State<LogIn> {
                     ),
                   )),
                   Center(
-                      child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(50, 70, 50, 15),
-                    child: TextFormField(
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(50, 70, 50, 15),
+                      child: TextFormField(
                         // 아이디 입력칸
                         controller: controller1,
                         decoration: InputDecoration(
@@ -125,7 +122,8 @@ class _LogInstate extends State<LogIn> {
                           // _LoginWithEmail(controller1.text, controller2.text);
                           // if (controller1.text == '' &&
                           //     controller2.text == '') {
-                          if (await _LoginWithEmail(controller1.text, controller2.text)) {
+                          if (await _LoginWithEmail(
+                              controller1.text, controller2.text)) {
                             Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
@@ -159,7 +157,7 @@ class _LogInstate extends State<LogIn> {
                           print("카톡 로그인 버튼 클릭");
                         },
                         child: Text(
-                          '카카오 로그인',
+                          '카카오',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 17,
